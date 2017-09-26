@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<epub>
+
+	<opf>
+	
+        	<package xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="id">
+        	   <metadata>
+        	      <dc:publisher>www.kurttrue.net</dc:publisher>
+                      <dc:language xsi:type="dcterms:RFC4646">en</dc:language>
+                      <dc:date opf:event="publication">2017-05-08</dc:date>
+    	      
+        	   </metadata>
+        	</package>
+ 	
+	</opf>
+
+        <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+        
+   		<head>
+   		  <meta  name="dtb:uid" content=""/>
+   		  <meta  name="dtb:depth" content="2"/>
+   		  <meta  name="dtb:totalPageCount" content="0"/>
+   		  <meta  name="dtb:maxPageNumber" content="0"/>
+   		</head>        
+   		
+        </ncx>
+        
+        <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0"/>        
+
+	<hierarchy>
+
+	   
+	      <book>
+	         <chapter>
+		     <entry/>
+	         </chapter>
+	      </book>
+	   
+
+	</hierarchy>
+
+	
+	<content>
+	    <paths>
+	       <path>cover.xhtml</path>
+	       <path>owl.xhtml</path>
+	    </paths>
+	</content>
+	
+	<output>
+	   <paths>
+	        <root>../output/owlandpussycat</root>
+	        <oebps>OEBPS</oebps>
+	        <meta-inf>META-INF</meta-inf>
+	        <text>text</text>
+	   </paths>
+	   <name>owlandpussycat.epub</name>
+	   <delete>yes</delete>	   
+	
+	</output>
+
+</epub>

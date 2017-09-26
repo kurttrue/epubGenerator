@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+<head>
+<meta content="" name="dtb:uid"/>
+<meta content="2" name="dtb:depth"/>
+<meta content="0" name="dtb:totalPageCount"/>
+<meta content="0" name="dtb:maxPageNumber"/>
+</head>
+<docTitle>
+<text>The owl and the pussycat</text>
+</docTitle>
+<navMap>
+<navPoint id="np-1" playOrder="1">
+<navLabel>
+<text>The owl and the pussycat</text>
+</navLabel>
+<content src="text/owl.xhtml#booktitle"/>
+<navPoint id="np-2" playOrder="2">
+<navLabel>
+<text>stanza 1</text>
+</navLabel>
+<content src="text/owl.xhtml#owl"/>
+</navPoint>
+<navPoint id="np-3" playOrder="3">
+<navLabel>
+<text>stanza 2</text>
+</navLabel>
+<content src="text/owl.xhtml#looked"/>
+</navPoint>
+<navPoint id="np-4" playOrder="4">
+<navLabel>
+<text>stanza 3</text>
+</navLabel>
+<content src="text/owl.xhtml#elegant"/>
+</navPoint>
+<navPoint id="np-5" playOrder="5">
+<navLabel>
+<text>stanza 4</text>
+</navLabel>
+<content src="text/owl.xhtml#sailed"/>
+</navPoint>
+<navPoint id="np-6" playOrder="6">
+<navLabel>
+<text>stanza 5</text>
+</navLabel>
+<content src="text/owl.xhtml#pig"/>
+</navPoint>
+<navPoint id="np-7" playOrder="7">
+<navLabel>
+<text>stanza 6</text>
+</navLabel>
+<content src="text/owl.xhtml#dined"/>
+</navPoint>
+</navPoint>
+</navMap>
+</ncx>

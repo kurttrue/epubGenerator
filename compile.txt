@@ -1,0 +1,74 @@
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/NavPointHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/EasyElement.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/DocHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/InputHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/localNavPointTester.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/localIOTester.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/localInputHandlerTester.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/IOHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/ZipHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/Zipper.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/PathMatcher.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/MediaTypeHandler.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/EpubFactory.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/Generator.java
+
+javac -cp ./classes -d ./classes ./src/net/kurttrue/www/epubGenerator/Cover.java
+
+
+###
+
+java -cp ./classes net.kurttrue.www.epubGenerator.localInputHandlerTester ~/epub/input/tester_d.xml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.Generator input=./input/sample_a.xml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.Generator input=./input/sample_c.xml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.Generator input=~/epub/input/tester_d.xml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.Zipper duty=zip output=./output/owlandpussycat/epub/testowl.epub input=./output/owlandpussycat/docstester
+
+java -cp ./classes net.kurttrue.www.epubGenerator.localNavPointTester ./input/tester.xml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.localIOTester input=./input/*.xhtml
+
+java -cp ./classes net.kurttrue.www.epubGenerator.localIOTester input=~/epub/input/*.xhtml
+
+
+####if you create the jar in ./classes, then paths in the jar won't start with classes
+
+cd ./classes
+
+jar cvfm ../lib/Generator.jar ../static/manifest.txt .
+
+
+####run from the jar.
+
+java -jar ./lib/Generator.jar input=./input/tester.xml
+
+####your debugger is at /data/epubcheck/epubcheck.jar
+
+java -jar ../epubcheck/epubcheck/epubcheck.jar /data/epubGenerator11/output/owlandpussycat/epub/owlandpussycat.epub
+
+####make the javadocs (exclude local testers).
+
+###output to local dir
+javadoc -author -version -d ./javadocs ./src/net/kurttrue/www/epubGenerator/[!local]*.java 
+
+###output to public dir
+javadoc -author -version -d /data/epubGenJavaDocs/javadocs  ./src/net/kurttrue/www/epubGenerator/[!local]*.java 
+
+javadoc -author -version -d /data/sudsdev/javadocs  ./src/net/kurttrue/www/epubGenerator/[!local]*.java 

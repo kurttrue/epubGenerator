@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unique-identifier="id" version="2.0">
+<metadata>
+<dc:publisher>www.kurttrue.net</dc:publisher>
+<dc:language xsi:type="dcterms:RFC4646">en</dc:language>
+<dc:date opf:event="publication">2017-05-08</dc:date>
+<dc:creator>Edward Lear</dc:creator>
+<dc:identifier id="uuid_id" opf:scheme="uuid">isbn_goes_here</dc:identifier>
+<dc:title>The owl and the pussycat</dc:title>
+<meta content="item2" name="cover"/>
+</metadata>
+<manifest>
+<item href="text/./style.css" id="item1" media-type="text/css"/>
+<item href="text/bigcover.jpg" id="item2" media-type="image/jpeg"/>
+<item href="text/owl.xhtml" id="item3" media-type="application/xhtml+xml"/>
+<item href="text/cover.xhtml" id="test-cover" media-type="application/xhtml+xml"/>
+<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+</manifest>
+<spine toc="ncx">
+<itemref idref="test-cover" linear="no"/>
+<itemref idref="item3" linear="yes"/>
+</spine>
+<guide>
+<reference href="text/cover.xhtml" title="Cover" type="cover"/>
+</guide>
+</package>
