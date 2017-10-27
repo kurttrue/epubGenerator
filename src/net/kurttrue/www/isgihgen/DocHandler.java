@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -25,6 +25,18 @@ import org.xml.sax.SAXParseException;
 import java.util.TreeMap;
 import java.util.ArrayList;
 
+
+	/**
+	* <h1>DocHandler: abstracts org.w3c.dom and javax.xml classes</h1>
+    * DocHandler and EasyElement are convenience classes that abstract away java's DOM and SAX classes.
+    * DocHandler allows the calling routine to read and write XML data in a (relatively) intuitive and non wordy way.
+    *
+    * @author Kurt True
+    * @version 1.0
+    * @since 2017-09-25
+	*/
+
+
 public class DocHandler
 {
 
@@ -39,6 +51,12 @@ public class DocHandler
 		rootEE  = arootEE;
 	}
 
+	/***
+
+	Sets the file path where the XML or HTML will go.
+
+	*/
+
 	public DocHandler setOutputPath(String aoutputPath)
 	{
 
@@ -47,6 +65,14 @@ public class DocHandler
 		return this;
 
 	}
+
+	/***
+
+
+      Set the method for the <b>Transformer</b> (<b>DocHandler.XML</b> or <b>DocHandler.HTML</b>).  Default is <b>DocHandler.XML</b>.
+
+	*/
+
 
 	public DocHandler setMethod(String amethod)
 	{
@@ -62,6 +88,12 @@ public class DocHandler
 
 		return doc;
 	}
+
+	/***
+
+	Write the document to the outputPath defined in <b>DocHandler.setOutputPath(String aoutputPath)</b>.
+
+	*/
 
     public void transform()
     {

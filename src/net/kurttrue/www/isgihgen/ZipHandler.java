@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import java.io.File;
 import java.io.FileInputStream;

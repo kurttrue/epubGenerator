@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+
+/***
+
+    * <h1>IOHandler: copies content files to output location and optionally removes old content.</h1>
+    *
+    * @author Kurt True
+    * @version 1.0
+    * @since 2017-09-25
+
+*/
 
 public class IOHandler
 {
@@ -37,6 +47,10 @@ public class IOHandler
 
 	}
 
+
+    /***
+    Removes previous content.  If this method isn't called, IOHandler will overwrite files with the same name but will not delete anything.  Therefore, if the calling routine does not call clear(), a file that has been removed from the input directory will not be removed from the output directory.
+    */
 
 	public void clear()
 	{
@@ -116,6 +130,12 @@ public class IOHandler
 		}
 
 	}
+
+	/***
+
+	Copy file at inputPath/fileName to outputPath/fileName.  Overwrite if output/fileName exists.
+
+	*/
 
 	public void copy(String fileName)
 	{

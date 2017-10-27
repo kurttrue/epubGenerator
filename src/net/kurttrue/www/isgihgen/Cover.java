@@ -1,4 +1,14 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
+
+	/**
+	* <h1>Cover: represents the epub's cover.</h1>
+    * This class represents the cover of the epub, which is typically an xhtml that contains an img tag referring to a jpeg or png.
+    *
+    * @author Kurt True
+    * @version 1.0
+    * @since 2017-09-25
+	*/
+
 
 public class Cover
 {

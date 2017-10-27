@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;

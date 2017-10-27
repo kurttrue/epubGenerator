@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 //EasyElement is a convenience class that turns an xml file into a collection of nested objects.
 
@@ -23,9 +23,9 @@ import org.w3c.dom.NamedNodeMap;
 
 
 	/**
-	* <h1>EasyElement</h1>
-    * EasyElement and DocHandler are convenience classes that abstract away java's DOM and SAX objects.
-    * These classes allow us to read and write XML data in a (relatively) intuitive and non wordy way.
+	* <h1>EasyElement: abstracts org.w3c.dom classes</h1>
+    * EasyElement and DocHandler are convenience classes that abstract away java's DOM and SAX classes.
+    * EasyElement allows the calling routine to read and write XML data in a (relatively) intuitive and non wordy way.
     *
     * @author Kurt True
     * @version 1.0
@@ -40,6 +40,12 @@ public class EasyElement
 	{
 
 	}
+
+	/***
+
+	Make an <b>EasyElement</b> representing the root element and its decendants contained in the xml document at path <b>inputPath</b>.
+
+	*/
 
 	public EasyElement buildFromPath(String inputPath)
 	{
@@ -78,6 +84,12 @@ public class EasyElement
 
 	}
 
+	/***
+
+	Make an EasyElement that represents org.w3c.dom.Element <b>element</b>.
+
+	*/
+
 	public EasyElement buildFromElement(Element element)
 	{
 
@@ -85,6 +97,12 @@ public class EasyElement
 
 		return this;
 	}
+
+	/***
+
+	Set the tag name for this EasyElement.
+
+	*/
 
 
 	public EasyElement setName(String aname)
@@ -94,6 +112,12 @@ public class EasyElement
 		return this;
 	}
 
+	/***
+
+	Set the text value for this EasyElement.
+
+	*/
+
 	public EasyElement setText(String atext)
 	{
 
@@ -101,6 +125,12 @@ public class EasyElement
 
 		return this;
 	}
+
+	/***
+
+	Return all EasyElements in the tree (<b>this</b> and all descendants of <b>this</b>) that have the name <b>ename</b>.
+
+	*/
 
 	public ArrayList<EasyElement> getEasyElementsByName(String ename)
 	{
@@ -125,6 +155,12 @@ public class EasyElement
 
 	}
 
+	/***
+
+	Return all EasyElements in the tree (<b>this</b> and all descendants of <b>this</b>) that have an attribute with the name <b>attname</b>.
+
+	*/
+
 	public ArrayList<EasyElement> getEasyElementsByAttribute(String attname)
 	{
 
@@ -148,6 +184,12 @@ public class EasyElement
 		return returnList;
 
 	}
+
+	/***
+
+	This method is called from within the <b>EasyElement</b> class.  A calling routine could use this method instead of <b>EasyElement.buildFromElement(org.w3c.dom.Element)</b> to populate the <b>EasyElement</b>.
+
+	*/
 
 	public void populate(Element element)
 	{
@@ -218,6 +260,13 @@ public class EasyElement
 
 	}
 
+	/***
+
+	The tag name.  Corresponds to <b>org.w3c.dom.Element.getTagName()</b>
+
+
+	*/
+
     public String getName()
     {
 
@@ -231,6 +280,12 @@ public class EasyElement
 
 		return returnBuffer.toString();
 	}
+
+	/***
+
+	Text value of the <b>EasyElement</b>.  Corresponds to <b>org.w3c.dom.getTextContent()</b>.
+
+	*/
 
 	public String getText()
 	{
@@ -260,6 +315,13 @@ public class EasyElement
 		return children;
 	}
 
+	/***
+
+	<b>True</b> if <b>EasyElement</b> has a child with the name <b>childName</b>.
+
+	*/
+
+
 	public boolean hasChild(String childName)
 	{
 
@@ -277,6 +339,12 @@ public class EasyElement
 		return returnBoolean;
 
 	}
+
+	/***
+
+	A convenience class helpful when the calling routine knows that an <b>EasyElement</b> has only one child with the name <b>childName</b>.  Returns an empty <b>ArrayList&#60;EasyElement&#62;</b> if <b>EasyElement</b> has no child with the name <b>childName</b>.
+
+	*/
 
 	public EasyElement getFirst(String childName)
 	{
@@ -309,6 +377,12 @@ public class EasyElement
 		return returnElement;
 	}
 
+	/***
+
+	Returns all children with the name <b>childName</b>.
+
+	*/
+
 	public ArrayList<EasyElement> getChildrenByName(String childName)
 	{
 
@@ -331,6 +405,12 @@ public class EasyElement
 
 		return returnList;
 	}
+
+	/***
+
+	A convenience method for adding a child without invoking the <b>EasyElement</b> constructor.
+
+	*/
 
     //you can add a key as a key, value pair if you're in a hurry...
 	public void addChild(String key, String value)
@@ -364,6 +444,13 @@ public class EasyElement
 
 	}
 
+
+    /***
+
+    Add an xml attribute key value pair to the EasyElement.  Corresponds to <b>org.w3c.dom.setAttribute(String, String)</b>.  In <b>EasyElement</b> attributes are represented by a <b>TreeMap<String, String></b>.
+
+    */
+
 	public void setAttribute(String key, String value)
 	{
 		attributes.put(key, value);
@@ -375,6 +462,12 @@ public class EasyElement
     {
 		return exceptions;
 	}
+
+	/***
+
+	If the calling routine populated this <b>EasyElement</b> with method <b>EasyElement.buildFromPath(String inputPath)</b>, this method returns the absolute path of inputPath.  Otherwise, it returns a blank <b>String</b>.
+
+	*/
 
 	public String getAbsPath()
 	{

@@ -1,11 +1,11 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import java.io.Console;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 	/**
-	* <h1>Generator</h1>
+	* <h1>Generator: entry point</h1>
 	* Generator is the entry point to the app.
 	* It parses the user's request (input=[path_to_input]) and creates an InputHandler and an EpubFactory, which are the classes that do the parsing and output building.
 	* If input file requests an overwrite, Generator will prompt the user for a confirmation.

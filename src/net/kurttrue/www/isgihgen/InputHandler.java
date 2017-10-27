@@ -1,4 +1,4 @@
-package net.kurttrue.www.epubGenerator;
+package net.kurttrue.www.isgihgen;
 
 import java.util.ArrayList;
 
@@ -22,6 +22,12 @@ public class InputHandler
 
 		return this;
 	}
+
+	/***
+
+	Returns the absolute path of the path set in <b>InputHandler.setInputPath(String path)</b>.
+
+	*/
 
 	public String getRealPath(String fullPath)
 	{
@@ -55,6 +61,12 @@ public class InputHandler
 		return returnBuffer.toString();
 
 	}
+
+	/***
+
+	Parse the input file.  Move content files.  Create the epub.
+
+	*/
 
 
 	public void parse()
