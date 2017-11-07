@@ -2,9 +2,6 @@ package net.kurttrue.www.isgihgen;
 
 import java.util.ArrayList;
 
-public class EpubFactory
-{
-
 	/**
 	* <h1>EpubFactory: calls DocHandler and ZipHandler to create the epub.</h1>
     * This class is wrapper for DocHandler and ZipHandler.  Its methods could be moved to InputHandler in a future release.
@@ -14,6 +11,8 @@ public class EpubFactory
     * @since 2017-09-25
 	*/
 
+public class EpubFactory
+{
 
 
 	public EpubFactory()
