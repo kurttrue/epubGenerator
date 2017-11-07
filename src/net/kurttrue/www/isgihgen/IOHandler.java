@@ -2,6 +2,9 @@ package net.kurttrue.www.isgihgen;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,8 +16,8 @@ import java.util.ArrayList;
     * <h1>IOHandler: copies content files to output location and optionally removes old content.</h1>
     *
     * @author Kurt True
-    * @version 1.0
-    * @since 2017-09-25
+    * @version 1.01
+    * @since 2017-11-07
 
 */
 
@@ -45,6 +48,14 @@ public class IOHandler
 
 		return this;
 
+	}
+
+	public IOHandler setInputFile(File ainputFile)
+	{
+
+		inputFile = ainputFile;
+
+		return this;
 	}
 
 
@@ -137,6 +148,54 @@ public class IOHandler
 
 	*/
 
+	public void write(String content, String fileName)
+	{
+
+		BufferedWriter bw = null;
+		FileWriter fw = null;
+
+		try
+		{
+			String target = outputPath + File.separator + fileName;
+
+			fw = new FileWriter(target);
+			bw = new BufferedWriter(fw);
+			bw.write(content);
+
+
+		}
+		catch(IOException e)
+		{
+			exceptions.add(this.getClass().getName() + " exception"  + e.toString());
+		}
+
+        finally
+        {
+
+			try
+			{
+
+				if (bw != null)
+					bw.close();
+
+				if (fw != null)
+					fw.close();
+
+			}
+			catch (IOException ex)
+			{
+
+			  exceptions.add(this.getClass().getName() + " exception: " + ex.toString());
+
+			}
+
+		}
+
+
+	}
+
+
+
 	public void copy(String fileName)
 	{
 
@@ -187,6 +246,8 @@ public class IOHandler
 		return feedback;
 	}
 
+
+
 protected ArrayList<String> exceptions = new ArrayList<String>();
 
 protected ArrayList<String> feedback = new ArrayList<String>();
@@ -196,5 +257,7 @@ protected String MYNAME = this.getClass().getName();
 protected String outputPath;
 
 protected String inputPath;
+
+protected File inputFile;
 
 }
