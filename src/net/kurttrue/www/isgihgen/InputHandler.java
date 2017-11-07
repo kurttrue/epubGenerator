@@ -6,6 +6,16 @@ import java.util.TreeMap;
 
 import java.io.File;
 
+/***
+
+    * <h1>InputHandler: copies content files to output location and optionally removes old content.</h1>
+    *
+    * @author Kurt True
+    * @version 1.01
+    * @since 2017-11-07
+
+*/
+
 public class InputHandler
 {
 
@@ -440,11 +450,9 @@ public class InputHandler
 
            feedback.add("mimehandler output->" + realPath  + File.separator + staticRoot);
 
-           mimehandler.copy(MIMETYPE);
-
-
-
-
+           //mimehandler.copy(MIMETYPE);
+           //swapped out line above for line below on 6n17. might switch to a this.getClass().getClassLoader().getResource("/static/" + MIMETYPE) strategy later.
+           mimehandler.write(MIMETYPECONTENT, MIMETYPE);
 
 		   EasyElement tocItem = new EasyElement().setName(ITEM);
 
@@ -1643,6 +1651,8 @@ public static final String CONTAINERNAME = "container.xml";
 public static final String STATIC = "static";
 
 public static final String MIMETYPE = "mimetype";
+
+public static final String MIMETYPECONTENT = "application/epub+zip";
 
 public static final String NAME = "name";
 
