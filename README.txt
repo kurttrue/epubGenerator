@@ -1,19 +1,21 @@
-A note to beginners: EPUBGENERATOR_HOME refers to the directory where you've installed isgihgen.  It is where you will find the directories lib, input and output, as well as this README file.
+isgihgen is a java application that builds an epub from an XML input file (called the ISGIH file), and one or more content files.
 
-isgihgen is a java application that builds an epub from an input file, and one or more content files.
+ISGIH stands for "Important stuff goes in here."
 
-It can be invoked this way...
+You can invoke isgihgen this way...
 
-java -jar EPUBGENERATOR_HOME/lib/isgihgen-[version].jar input=PATH_TO_INPUT_FILE
+java -jar PATH_TO_ISGIHGEN/isgihgen-[version].jar input=PATH_TO_INPUT_FILE
 
-The input file needs to be a legal xml file.  A heavily commented sample input file is located at EPUBGENERATOR_HOME/input/sample_a.xml.
+(Note: you will need to have write permission at the path specified at the XPath epub->output->paths->path->root  in your ISGIH  file.)
 
-The input file tells isgihgen where to find the content that will go into your epub and where to output the finished (zipped) product.
+The ISGIH file needs to be a legal XML file.  A heavily commented sample ISGIH file is located in this repository at input/sample_a.xml.
 
-Provided you have write permissions at the EPUBGENERATOR_HOME directory, you can create a sample epub by running this command from EPUBGENERATOR_HOME (the same directory as this README file):
+The ISGIH file tells isgihgen where to find the content that will go into your epub and where to output the finished (zipped) product.
 
-     java -jar ./lib/isgihgen-[version].jar input=./input/sample_a.xml
+sample_a.xml specifies relative paths for input and output, but your input can reside anywhere the isgihgen user has read permission, and the output can likewise go anyplace where the isgihgen user has write permission.
 
-sample_a.xml specifies input and output directories within EPUBGENERATOR_HOME, but your input can reside anywhere the isgihgen user has read permission, and the output can likewise go anyplace where the isgihgen user has write permission.
+You will probably find it's convenient to keep your input and output somewhere external to the location of your isgihgen jar.
 
-You will probably find it's convenient to keep your input and output somewhere external to EPUBGENERATOR_HOME.
+A word of warning with regard to your output path: if the value at XPath epub->output->delete in your ISGIH document is set to 'yes', isgihgen will ask you-- at runtime-- if you want to perform a recursive delete on the output path specified in your ISGIH document (at XPath epub->output->paths->path->root), and, if you confirm, will recusively delete all content at that path.  If that makes you nervous, set the value of epub->output->delete to 'no'.  You can always manually delete any stale content in your output directory.
+
+A guide to using isgihgen is located at this url: http://www.kurttrue.net/epubgen

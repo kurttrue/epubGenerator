@@ -20,7 +20,7 @@
 	
 	<!-- 
 	     ncx is the root element of your epub's toc.ncx file.  -->
-	     docTitle element can appear in the ncx element, or epubGenerator can parse it from your content file. 
+	     docTitle element can appear in the ncx element, or isgihgen can parse it from your content file. 
 	-->
 
         <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
@@ -37,14 +37,14 @@
         <!-- 
         
              container is the root element of your epubs ./META-INF/container.xml file 
-             epubGenerator will add the a reference to content.opf to this element.
+             isgihgen will add the a reference to content.opf to this element.
              
         -->
         
         <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0"/>     
         
         <!--  
-              epubGenerator wants to know how your content is organized.  
+              isgihgen wants to know how your content is organized.  
               That information goes in the hierarchy element.
               
         -->
@@ -75,9 +75,9 @@
 	    <paths>
 	       <!-- 
 	           The attribute type="cover" here can indicate that the file represents the cover,
-	           or epubGenerator can determine the cover from a meta tag in the cover's head element.
+	           or isgihgen can determine the cover from a meta tag in the cover's head element.
 	           See cover.html's head element for a sample of this meta tag (name="type" content="cover").
-	           If you use ./input/sample_b.xml as your input file, epubGenerator will 
+	           If you use ./input/sample_b.xml as your input file, isgihgen will 
 	       -->
 	       <path type="cover" id="test-cover">cover.xhtml</path>
 	       <path>owl.xhtml</path>
@@ -86,14 +86,14 @@
 	
 	<!-- 
 	     
-	     The output element tells epubGenerator where to put your output.
+	     The output element tells isgihgen where to put your output.
      	     
 	-->
 	
 	<output>
 	   <paths>
 	        <!-- 
-	           epubGenerator will create two directories under root, docs and epub.  
+	           isgihgen will create two directories under root, docs and epub.  
 	           Directory docs contains the prezipped epub content.
 	           Directory epub contains the zipped epub.	           
 	        -->
@@ -107,7 +107,7 @@
 	   <!-- the name of your epub. -->
 	   <name>owlandpussycat.epub</name>
 	   
-	   <!-- yes here means that epubGenerator will delete your previous output. -->
+	   <!-- yes here means that isgihgen will delete your previous output. -->
 	   <delete>yes</delete>	   
 	
 	</output>
