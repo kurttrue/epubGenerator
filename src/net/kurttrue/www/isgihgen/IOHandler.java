@@ -16,8 +16,8 @@ import java.util.ArrayList;
     * <h1>IOHandler: copies content files to output location and optionally removes old content.</h1>
     *
     * @author Kurt True
-    * @version 1.01
-    * @since 2017-11-07
+    * @version 1.02
+    * @since 2017-11-10
 
 */
 
@@ -69,7 +69,8 @@ public class IOHandler
 		if(outputPath!=null)
 		{
 
-			this.delete(outputPath);
+			this.delete(outputPath + File.separator + InputHandler.EPUBDIR);
+			this.delete(outputPath + File.separator + InputHandler.DOCSDIR);
 		}
 		else
 		{
