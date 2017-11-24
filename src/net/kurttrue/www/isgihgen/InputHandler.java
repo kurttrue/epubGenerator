@@ -11,8 +11,14 @@ import java.io.File;
     * <h1>InputHandler: copies content files to output location and optionally removes old content.</h1>
     *
     * @author Kurt True
-    * @version 1.01
-    * @since 2017-11-07
+    * @version 1.03
+    * @since 2017-11-24
+
+*/
+
+/*
+
+2017-11-24 Revised getOutputPath() & getContainerPath(), as they weren't resolving to the right output path if output path expressed as absolute in isgih file.
 
 */
 
@@ -221,7 +227,8 @@ public class InputHandler
            {
               //delete any files previously written to the output path.
               //if calling routine calls InputHandler.setClear(CLEARYES).
-              iohandler.clear();
+			  iohandler.clear();
+
 	       }
 
 
@@ -1445,16 +1452,22 @@ public class InputHandler
 	{
 		StringBuffer returnBuffer = new StringBuffer("");
 
-		returnBuffer.append(realPath);
-
-		returnBuffer.append(File.separator);
-
 		if(metaRoot != null)
 		{
 
-		  returnBuffer.append(metaRoot);
+			boolean pathIsAbsolute = new File(outputBase).isAbsolute();
 
-		  returnBuffer.append(File.separator);
+			if(!pathIsAbsolute)
+			{
+
+		        returnBuffer.append(realPath);
+		        returnBuffer.append(File.separator);
+
+	         }
+
+		     returnBuffer.append(metaRoot);
+
+		     returnBuffer.append(File.separator);
 
 	    }
 
@@ -1494,18 +1507,22 @@ public class InputHandler
 	{
 		StringBuffer returnBuffer = new StringBuffer("");
 
-		returnBuffer.append(realPath);
-
-		returnBuffer.append(File.separator);
-
-
 		if(outputBase != null)
 		{
+
+			boolean pathIsAbsolute = new File(outputBase).isAbsolute();
+
+			if(!pathIsAbsolute)
+			{
+
+			   returnBuffer.append(realPath);
+			   returnBuffer.append(File.separator);
+
+	    	}
+
 			returnBuffer.append(outputBase);
 
 		}
-
-
 
 		return returnBuffer.toString();
 	}
