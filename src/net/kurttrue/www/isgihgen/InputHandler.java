@@ -11,13 +11,14 @@ import java.io.File;
     * <h1>InputHandler: copies content files to output location and optionally removes old content.</h1>
     *
     * @author Kurt True
-    * @version 1.03
-    * @since 2017-11-24
+    * @version 1.04
+    * @since 2017-12-31
 
 */
 
 /*
 
+2017-12-31 Revised getCoverMetaEE() so that name attribute precedes content attribute in content.opf metadata->meta element that represents cover img.
 2017-11-24 Revised getOutputPath() & getContainerPath(), as they weren't resolving to the right output path if output path expressed as absolute in isgih file.
 
 */
@@ -936,6 +937,10 @@ public class InputHandler
 
 		EasyElement returnElement = new EasyElement().setName(META);
 
+        //moved name attribute in front of content attribute on 31d17.
+        //b&n nook won't display cover properly if content attribute comes first.
+	    returnElement.setAttribute("name", COVER);
+
         if(cover.hasImgID())
         {
 
@@ -943,7 +948,7 @@ public class InputHandler
 
 	    }
 
-	    returnElement.setAttribute("name", COVER);
+
 
 
 		return returnElement;
