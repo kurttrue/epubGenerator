@@ -155,6 +155,251 @@ public class EasyElement
 
 	}
 
+    /*
+    //put this one aside 1f18. -kt
+
+	public ArrayList<EasyElement> getXPathUncles(String handle, String value, String tg_name)
+	{
+
+		//this method solves the problem of finding the author for a particular story or page...
+		//but it can also find any element that has an Uncle relationship with the Element with the attribute represented by handle->value
+
+		ArrayList<EasyElement> ees = new ArrayList<EasyElement>();
+
+        //ArrayList<EasyElement> namematches = this.getEasyElementsByName(tg_name);
+
+
+
+		return ees;
+	}
+
+	*/
+
+   /***
+
+     Returns true if this has an attribute anywhere in its tree that matches handle->value.
+
+   */
+
+    public EasyElement getCacheable()
+    {
+
+		return this.getCacheable(this);
+
+	}
+
+	/***
+
+	Returns a copy of EasyElement iee nested within EasyElements that correspond to iee's antecedents.
+	(Useful for creating a cache of Documents.)
+
+	*/
+
+	protected EasyElement getCacheable(EasyElement iee)
+	{
+
+	    EasyElement oee = iee;
+
+	    //if iee has no parent, nothing to do.
+	    if(iee.hasParent())
+	    {
+
+			EasyElement iparent = iee.getParent();
+
+			oee = iparent.copy(NOCHILDREN);
+
+			oee.addChild(iee.copy(COPYCHILDREN));
+
+			//if you find a parent, go recursive.
+			if(oee.hasParent())
+			{
+				oee = this.getCacheable(oee);
+			}
+		}
+
+	    return oee;
+
+	}
+
+	/***
+
+	True if this EasyElement has a parent EasyElement.  (False for a root element.)
+
+	*/
+
+	public boolean hasParent()
+	{
+
+		return parent != null;
+	}
+
+
+	/***
+
+	   Convert text node represented by variable text into child EasyElement childname->text
+	   if calling routine calls this method, getText() for EasyElement this will return a blank string.
+
+	*/
+
+	public void textToChild(String childname)
+	{
+
+		textToChild=true;
+
+		this.addChild(childname, text);
+
+	}
+
+
+	/***
+
+	   Returns true if this has an attribute anywhere in its tree that matches handle->value.
+
+	*/
+
+	public boolean hasAttributePair(String handle, String value)
+	{
+
+		//this method returns true if this has an attribute anywhere in its tree that matches handle->value.
+
+		boolean returnBoolean = false;
+
+		ArrayList<EasyElement> matches = this.getEasyElementsByAttribute(handle);
+
+		for(EasyElement match : matches)
+		{
+
+			TreeMap<String, String> attMap = match.getAttributes();
+
+			if(attMap.containsKey(handle))
+			{
+
+				if(attMap.get(handle).equals(value))
+				{
+
+					//return true if a matching attribute found.
+					returnBoolean=true;
+				}
+			}
+		}
+
+		return returnBoolean;
+
+
+	}
+
+ /***
+
+		Returns a stripped down EasyElement that represents all XPaths to elements that match name tgname.
+
+
+ */
+
+	public EasyElement getXPathsForName(String tgname)
+	{
+
+		//this method returns a stripped down EasyElement that represents all XPaths to elements that match name tgname.
+
+		EasyElement returnEE = null;
+
+
+        if(this.getEasyElementsByName(tgname).size()>0)
+        {
+
+			returnEE = this.copy(NOCHILDREN);
+
+			for(EasyElement child : this.getChildren())
+			{
+	             if(child.getXPathsForName(tgname)!=null)
+	             {
+					 returnEE.addChild(child.getXPathsForName(tgname));
+				 }
+			}
+		}
+
+		return returnEE;
+
+	}
+
+    /***
+
+	  Returns a stripped down EasyElement that represents all XPaths to elements that have attributes that match handle->value.
+
+
+    */
+
+
+	public EasyElement getXPathsForAttribute(String handle, String value)
+	{
+
+		//this method returns a stripped down EasyElement that represents all XPaths to elements that have attributes that match handle->value.
+
+		EasyElement returnEE = null;
+
+		if(this.hasAttributePair(handle, value))
+		{
+
+			     returnEE=this.copy(NOCHILDREN);
+
+			     for(EasyElement child : this.getChildren())
+			     {
+					 if(child.getXPathsForAttribute(handle, value)!=null)
+					 {
+                         returnEE.addChild(child.getXPathsForAttribute(handle, value));
+					 }
+				 }
+
+
+		}
+
+
+		return returnEE;
+
+	}
+
+	/***
+
+	Makes a copy of this EasyElement, with or without children.
+
+	*/
+
+	public EasyElement copy(boolean copychildren)
+	{
+
+		EasyElement returnEE = new EasyElement();
+
+		returnEE.setName(this.getName());
+
+		returnEE.setText(this.getText());
+
+		for(String key : this.getAttributes().keySet())
+		{
+			returnEE.setAttribute(key, this.getAttributes().get(key));
+		}
+
+		if(copychildren)
+		{
+
+			for(EasyElement child : this.getChildren())
+			{
+				returnEE.addChild(child.copy(copychildren));
+			}
+
+
+	    }
+
+		if(parent!=null)
+		{
+			//never call parent.copy(COPYCHILDREN), as that will cause an endless loop.
+			returnEE.setParent(parent.copy(NOCHILDREN));
+		}
+
+
+
+		return returnEE;
+
+	}
+
 	/***
 
 	Return all EasyElements in the tree (<b>this</b> and all descendants of <b>this</b>) that have an attribute with the name <b>attname</b>.
@@ -295,7 +540,12 @@ public class EasyElement
 		if(text != null)
 		{
 
-			returnBuffer.append(text);
+			//textToChild means calling class has converted text to a child EasyElement
+			if(!textToChild)
+			{
+
+			  returnBuffer.append(text);
+		    }
 		}
 
 		return returnBuffer.toString();
@@ -406,6 +656,20 @@ public class EasyElement
 		return returnList;
 	}
 
+	public void setParent(EasyElement ee)
+	{
+
+		parent = ee;
+
+	}
+
+
+	public EasyElement getParent()
+	{
+
+		return parent;
+	}
+
 	/***
 
 	A convenience method for adding a child without invoking the <b>EasyElement</b> constructor.
@@ -416,6 +680,8 @@ public class EasyElement
 	public void addChild(String key, String value)
 	{
 		EasyElement child = new EasyElement().setName(key).setText(value);
+
+		child.setParent(this);
 
 		children.add(child);
 
@@ -431,6 +697,9 @@ public class EasyElement
     //...or you can add a child by adding a new EasyElement.
 	public void addChild(EasyElement child)
 	{
+
+		child.setParent(this);
+
 		String childName = child.getName();
 
 		children.add(child);
@@ -498,6 +767,17 @@ protected String text=null;
 
 protected String absPath = null;
 
+protected EasyElement parent = null;
+
+//converts to true if textToChild() method called.
+protected boolean textToChild = false;
+
 public static final String BLANK = "_blank_";
+
+public static final boolean COPYCHILDREN=true;
+
+public static final boolean NOCHILDREN=false;
+
+
 
 }
