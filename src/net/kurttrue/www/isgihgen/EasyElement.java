@@ -28,8 +28,8 @@ import org.w3c.dom.NamedNodeMap;
     * EasyElement allows the calling routine to read and write XML data in a (relatively) intuitive and non wordy way.
     *
     * @author Kurt True
-    * @version 1.0
-    * @since 2017-09-25
+    * @version 1.06
+    * @since 2018-02-03
 	*/
 
 
@@ -497,7 +497,12 @@ public class EasyElement
 			 else if(node.getNodeType() == Node.TEXT_NODE)
 			 {
 
-			     this.setText(node.getNodeValue());
+			     if(node.getNodeValue().trim().length()>0)
+			     {
+			         this.setText(node.getNodeValue());
+
+
+			     }
 			 }
 
 
@@ -541,11 +546,11 @@ public class EasyElement
 		{
 
 			//textToChild means calling class has converted text to a child EasyElement
-			if(!textToChild)
-			{
+			//if(!textToChild)
+			//{
 
 			  returnBuffer.append(text);
-		    }
+		    //}
 		}
 
 		return returnBuffer.toString();
